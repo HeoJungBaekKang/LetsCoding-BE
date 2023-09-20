@@ -1,17 +1,8 @@
-package com.group.letscoding.domain.user;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+package com.group.letscoding.Domain.user;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 @Entity
 public class User {
 
