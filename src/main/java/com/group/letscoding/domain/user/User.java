@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Builder
 @AllArgsConstructor
@@ -17,19 +17,20 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(length = 100, unique = true)
     private String username;
+
+    @Column(nullable = false)
+    private String email;
+
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private  String name;
-    private String role;
-    private LocalDateTime createDate;
 
-    @PrePersist
-    public void createDate() {
-        this.createDate = LocalDateTime.now();
-    }
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String role; //관리자,회원
+
+    @Column(nullable = false)
+    Date createDate;
 }

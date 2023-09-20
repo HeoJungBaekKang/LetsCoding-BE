@@ -1,4 +1,5 @@
-package com.group.letscoding.Domain.Stack;
+/*
+package com.group.letscoding.domain.Stack;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,3 +27,4 @@ public class Stack {
 
     private String
 }
+*/
