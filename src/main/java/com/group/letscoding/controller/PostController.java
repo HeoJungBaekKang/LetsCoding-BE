@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PostController {
 
-
     // 1. 모집 글 작성 페이지로 이동
     @GetMapping("/post/create-post")
     public String createPost () {
@@ -24,8 +23,6 @@ public class PostController {
     public String updatePost () {
         return "update-post";
     }
-
-
 
     // 4. 스터디 그룹 생성 화면 -> createGroup.html
     @GetMapping("/post/create-group")
