@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <title>그룹</title>
+  <meta charset="utf-8">
+  <div th:replace="layout/header"></div>
+  <style>
+    div.scroller {
+      height: 800px;
+      overflow-y: scroll;
+      scrollbar-color: pink lightblue;
+      margin-left: 20px;
+    }
+    .custom-btn {
+      width: 370px;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+<br/>
+<!--body start-->
+<div class="container-fluid">
+  <div class="row">
+    <!-- list -->
+    <div class="col-sm-8">
+      <div class="scroller">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>작성자</th>
+            <th>제목</th>
+            <th>내용</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr th:each="review : ${reviews}">
+              <td th:text="${groupMember.userId}"></td>
+              <td th:text="${review.title}"></td>
+              <td th:text="${review.content}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div>
+        <input type="text" value="th:value=*{createDate} ~ *{endDate}" readonly style="width: 350px; text-align: center;" />
+        <br/><br/><br/>
+        <h2>groupName</h2>
+        <br/><br/><br/>
+        <button type="button" class="btn btn-secondary custom-btn" th:onClick="|location.href='@{group/review}'|">회고 작성</button>
+        <br/>
+        <button type="button" class="btn btn-secondary custom-btn">출석</button>
+      </div>
+      <div>
+        <!-- 버튼을 클릭하면 모달을 띄우도록 설정 -->
+        <button type="button" class="btn btn-secondary custom-btn" data-toggle="modal" data-target="#myModal">
+          그룹 인원 보기
+        </button>
+        ​
+        <!-- 모달 창 -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="studyGroupMember">참여 중인 인원</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+              <div class="modal-body">
+                studyGroupMember.userId
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+​
+<br/>
+<div th:replace="layout/footer"></div>
+​
+</body>
+</html>
