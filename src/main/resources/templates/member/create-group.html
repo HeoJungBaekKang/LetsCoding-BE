@@ -1,0 +1,106 @@
+<div th:replace="layout/header"></div>
+<script>
+    function processKeywords() {
+
+        // 여기에서 키워드 처리 로직을 구현
+        // 입력된 키워드를 가져오고 쉼표로 분리하여 배열로 저장
+        var keywordInput = document.getElementById("keyword").value;
+        var keywordsArray = keywordInput.split(',');
+
+        // 각 키워드를 별도로 처리하거나 출력
+        for (var i = 0; i < keywordsArray.length; i++) {
+            var keyword = keywordsArray[i].trim(); // 앞뒤 공백 제거
+
+            // 여기에서 각 키워드에 대한 추가 처리가능.
+        }
+
+        // 폼을 제출하지 않도록 false를 반환
+        return false;
+    }
+
+    function searchMembers() {
+        // 여기에서 키워드 처리 로직을 구현
+        // Ajax를 사용하여 검색 결과 가져오기
+        var memberInput = document.getElementById("keyword").value;
+        $.ajax({
+            url: "/search", // 검색을 처리하는 서버 엔드포인트 URL을 여기에 입력
+            method: "GET",
+            data: {
+                member: memberInput
+            },
+            success: function (data) {
+                // 서버에서 반환한 검색 결과를 표시
+                var searchResults = document.getElementById("searchResults");
+                searchResults.innerHTML = data;
+                // 검색 결과가 없을 경우 메시지 표시
+                if (data.trim() === "") {
+                    searchResults.innerHTML = "검색 결과가 없습니다.";
+                }
+            },
+            error: function () {
+                console.error("검색 실패");
+            }
+        });
+        // 폼을 제출하지 않도록 false를 반환
+        return false;
+    }
+
+    function handleFormSubmission() {
+        // processKeywords() 함수 실행
+        processKeywords();
+        // 폼을 제출
+        return true;
+    }
+</script>
+
+<style>
+    .study_form_title {
+        text-align: center;
+    }
+</style>
+
+<div class="study_form_title">
+    <h2>스터디 그룹을 만들어 주세요!</h2>
+</div>
+<!-- ================================= -->
+<style>
+    .form-container {
+        text-align: center;
+        /* 폼 안의 요소들을 수평 가운데 정렬 */
+        margin: 0 auto;
+        /* 수평 가운데 정렬을 위한 마진 설정 */
+        width: 50%;
+        /* 원하는 폼의 너비 설정 */
+    }
+</style>
+<br>
+<div class="form-container">
+    <form id="studyGroupForm" onsubmit="return processKeywords()">
+        <label for="name">이름 : </label>
+        <input type="text" id="name" name="name"><br><br>
+        ​
+        <label for="participant">인원(숫자만 입력) : </label>
+        <input type="text" id="participant" name="participant"><br><br> <br>
+        ​
+        <label for="keyword">키워드를 입력해주세요(,로구분) : </label>
+        <input type="text" id="keyword" name="keyword"><br><br>
+        ​
+        <label for="members" id="members">멤버를 결정해주세요</label><br>
+        <nav class="navbar">
+            <form class="form-inline" action="/action_page.php">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </nav>
+        <div id="searchResults" class="mt-3"></div>
+        <br><br>
+        ​
+        <input type="submit" value="그룹 생성" onclick="return handleFormSubmission()">
+    </form>
+</div>
+
+<div th:replace="layout/footer"></div>

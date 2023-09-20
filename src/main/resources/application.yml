@@ -11,11 +11,24 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
+#  datasource:
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://localhost:3307/letscoding?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
+#    username: dev
+#    password: 1234
+
+  # H2 Setting Info (H2 Console에 접속하기 위한 설정정보 입력)
+  h2:
+    console:
+      enabled: true  # H2 Console을 사용할지 여부 (H2 Console은 H2 Database를 UI로 제공해주는 기능)
+      path: /h2-console  # H2 Console의 Path
+
   datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3307/letscoding?serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&useSSL=false
-    username: dev
-    password: 1234
+    driver-class-name: org.h2.Driver   #database를 h2로 사용하겠다.
+    url: jdbc:h2:tcp://localhost/~/test   #H2 접속 정보
+    username: sa   #H2 접속 시 입력할 username (원하는 것)
+    password:     #H2 접속 시 입력할 password  (원하는 것)
+
 
   jpa:
     open-in-view: true
